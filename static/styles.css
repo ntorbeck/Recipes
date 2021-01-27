@@ -1,0 +1,386 @@
+#char_lvl, #class_lvl, #max, #multi
+{
+    width: 110px;
+}
+
+#time, #zone
+{
+    width: 150px;
+}
+
+.bg
+{
+    background-color: #303030;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    padding: 1.25rem 1.75rem;
+}
+
+.btnCheck
+{
+    background-color: #444;
+    border-bottom-left-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    width: 25px;
+}
+
+.btnCheckPad
+{
+    margin-left: 6px;
+}
+
+.btnCheck:hover, .btnTog:hover
+{
+    background-color: #595959;
+    border-color: #595959;
+}
+
+.btnTog
+{
+    padding: 2px 3px 0px;
+}
+
+.colCheck
+{
+    width: 50px;
+}
+
+.colCheckPad
+{
+    margin-left: 2px;
+}
+
+.borBot
+{
+    border-bottom: 1px solid #444;
+}
+
+.borRight
+{
+    border-right: 1px solid #444;
+}
+
+.comp input
+{
+    padding-left: 35px;
+}
+
+.comp label
+{
+    color: #444;
+    margin: 8px 10px;
+    position: absolute;
+}
+
+@media screen and (max-width: 991px)
+{
+    .comp
+    {
+        margin-bottom: 30px;
+    }
+}
+
+.lfg_flash
+{
+    width: 60px;
+}
+
+.lfg_logo
+    {
+        height: auto;
+        min-width: 150px;
+        width: 25%;
+    }
+
+@media only screen and (min-width: 400px)
+{
+    .lfg_logo
+    {
+        height: auto;
+        min-width: 200px;
+        width: 20%;
+    }
+}
+
+.logo
+{
+    font-family: Lobster;
+}
+
+.navbar /* Removes padding from Navigation Bar */
+{
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+
+/* Ensures invail-feedback messages do not move form fields */
+.relative, .rel_arch, .rel_other, .rel_select
+{
+    line-height: 0px;
+    margin: 0px;
+    position: relative;
+}
+
+/* Changes default postion of invail-feedback message */
+.relative, .rel_other
+{
+    top: 14px;
+}
+
+.rel_other, .rel_select
+{
+    left: 45px;
+}
+
+.rel_select
+{
+    bottom: 52px;
+}
+
+.row_link:hover
+{
+    cursor: pointer;
+}
+
+.spacing
+{
+    word-spacing: 2px;
+}
+
+.spac_sm
+{
+    word-spacing: 1px;
+}
+
+.wtspace
+{
+    white-space: pre-wrap;
+}
+
+
+/* CS50 Finance distribution code CSS */
+main .cs50
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+
+/* https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css with modified/added fields to restore theme defaults */
+/* DataTables framework */
+.dataTables_filter, .dataTables_length
+{
+    margin-top: 0.5rem;
+}
+
+.dataTables_filter, .dataTables_paginate
+{
+	float: left;
+}
+
+.dataTables_filter input
+{
+    border: 2px solid #fff;
+    border-radius: .25rem;
+    color: #444;
+    margin-left: 0.5rem;
+    padding-left: .375rem;
+}
+
+.dataTables_filter input:focus
+{
+    color: #444;
+    background-color: #fff;
+    border-color: #138496;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
+
+.dataTables_info, .dataTables_length
+{
+	float: right;
+}
+
+.dataTables_info, .dataTables_paginate
+{
+    margin-bottom: 0.5rem;
+}
+
+.dataTables_length select
+{
+    border: 2px solid #fff;
+    border-radius: .25rem;
+    color: #444;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    height: 29px;
+}
+
+.dataTables_length select:focus
+{
+    color: #444;
+    background-color: #fff;
+    border-color: #138496;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
+
+table.dataTable thead th, table.dataTable thead td
+{
+    padding: 10px 18px;
+}
+
+@media screen and (max-width: 767px)
+{
+    .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_paginate
+    {
+        float: none;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .dataTables_wrapper .dataTables_paginate
+    {
+        margin-top: 0.5em;
+    }
+
+}
+
+@media screen and (max-width: 640px)
+{
+    .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter
+    {
+        float: none;
+        text-align: center;
+    }
+}
+
+/* http://live.datatables.net/wegotudi/1/edit */
+#DataTables_Char_Table_wrapper.dataTables_wrapper  div.dataTables_info
+{
+  width: 100%;
+  float: none;
+  text-align: center;
+}
+
+
+/* Pagination with modified/added fields to restore theme defaults */
+.dataTables_wrapper .dataTables_paginate
+{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button
+{
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    margin-left: 0;
+    line-height: 1.25;
+    color: #fff;
+    background-color: #17a2b8;
+    border: 0 solid transparent;
+    cursor: pointer;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    z-index: 2;
+    color: #fff;
+    text-decoration: none;
+    background-color: #138496;
+    border-color: transparent;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+    z-index: 2;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+            box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
+
+/* https://stackoverflow.com/questions/7896402/how-can-i-replace-text-with-css */
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous
+{
+    color: transparent;
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous::after
+{
+    content: "«";
+    color: #fff;
+    margin-left: -58px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.next
+{
+    color: transparent;
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.next::after
+{
+    content: "»";
+    color: #fff;
+    margin-left: -32px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    z-index: 1;
+    color: #fff;
+    background-color: #138496;
+    border-color: transparent;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    pointer-events: none;
+    cursor: auto;
+    background-color: #0e6471;
+    border-color: transparent;
+}
+
+
+/* Sorting (Modified) */
+/* Images from https://github.com/DataTables/DataTables/tree/master/media/images */
+.sorting_asc
+{
+	background: url('images/sort_asc.png') no-repeat right center;
+}
+
+.sorting_desc
+{
+	background: url('images/sort_desc.png') no-repeat right center;
+}
+
+.sorting
+{
+	background: url('images/sort_both.png') no-repeat right center;
+}
