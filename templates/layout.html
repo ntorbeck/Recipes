@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- https://www.w3schools.com/howto/howto_google_fonts.asp -->
+        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet'>
+
+        <!-- https://favicon.io/favicon-converter/ generates icon from image(My own design) -->
+        <link href="/static/images/favicon.ico" rel="icon">
+
+        <!-- https://bootswatch.com/darkly/ used as a base and modified -->
+        <link href="/static/theme.css" rel="stylesheet">
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <!-- Required scripts -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+        <title>VCB: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+        <!-- http://getbootstrap.com/docs/4.1/components/navbar/ -->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark spacing">
+            <a class="navbar-brand" href="/"><img src="/static/images/favicon.ico" alt="Mini LFG Logo"></a>
+            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                {% if session.user_id %}
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarAccount" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarAccount">
+                                <a class="dropdown-item" href="/">Favorites</a>
+                                <a class="dropdown-item" href="/your_recipes">Your Recipes</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/recipe_gen">Add Recipe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/browse">Browse</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>
+
+        {% if get_flashed_messages(category_filter=["error"]) %}
+            <header>
+                <div class="row m-0">
+                    <div class="col m-auto">
+                        <img class="lfg_flash float-right" src="/static/images/lfg_fail.png" alt="Critical Fail">
+                    </div>
+                    <div class="alert alert-danger text-center col m-auto" role="alert">
+                        {{ get_flashed_messages() | join(" ") }}
+                    </div>
+                    <div class="col m-auto">
+                        <img class="lfg_flash float-left" src="/static/images/lfg_fail.png" alt="Critical Fail">
+                    </div>
+                </div>
+            </header>
+        {% elif get_flashed_messages(category_filter=["info"]) %}
+            <header>
+                <div class="row m-0">
+                    <div class="col m-auto">
+                        <img class="lfg_flash float-right" src="/static/images/lfg_success.png" alt="Critical Hit">
+                    </div>
+                    <div class="alert alert-success text-center col m-auto" role="alert">
+                        {{ get_flashed_messages() | join(" ") }}
+                    </div>
+                    <div class="col m-auto">
+                        <img class="lfg_flash float-left" src="/static/images/lfg_success.png" alt="Critical Hit">
+                    </div>
+                </div>
+            </header>
+        {% endif %}
+
+        <!-- http://getbootstrap.com/docs/4.1/layout/overview/#containers -->
+        <main class="container-fluid p-5">
+            {% block main %}{% endblock %}
+        </main>
+
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/components/alerts/ -->
+    <div class="alert alert-danger cs50" role="alert">
+        <h3 class="alert-heading">Error {{ code }}</h3>
+        <div class="row text-left spac_sm mx-2">
+            {% for error in message %}
+                &bull; {{ message[loop.index - 1] }}<br>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <img class="lfg_logo" src="/static/images/lfg_fail.png" alt="Critical Fail">
+    </div>
+
+{% endblock %}

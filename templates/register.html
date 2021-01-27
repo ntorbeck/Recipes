@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <!-- Modified cs50 Finance login.html -->
+    <form action="/register" method="post" id="register">
+        <div>
+            Please choose a username and password:
+        </div>
+        <br>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control cs50" name="username" placeholder="Username" type="text" maxlength="50" aria-label="Username">
+        </div>
+        <div class="form-group">
+            <input class="form-control cs50" name="password" placeholder="Password" type="password" maxlength="50" aria-label="Password">
+        </div>
+        <div class="form-group">
+            <input class="form-control cs50" name="confirmation" placeholder="Retype Password" type="password" maxlength="50" aria-label="Retype Password">
+        </div>
+        <button class="btn btn-info" type="submit" aria-label="Register button">Register</button>
+    </form>
+
+    <script>
+        document.getElementById("register").addEventListener("submit", function(event) {
+            event.preventDefault();
+            $.getJSON("/check", {username: $('input[name="username"]').val()},
+            function(data) {
+                if (data === false) {
+                    alert("username unavailable");
+                } else {
+                    $("#register").submit();
+                }
+            });
+        });
+    </script>
+{% endblock %}
