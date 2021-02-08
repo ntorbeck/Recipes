@@ -36,8 +36,8 @@ def index():
     """Show user's favorites"""
 
     # Query database for user's favorites
-    favorites = db.execute("SELECT mess_id, from_user, subject, read, sent FROM messages WHERE to_user = (SELECT username FROM users WHERE id = :id) AND to_del = 0",
-                          id=session["user_id"])
+    #favorites = db.execute("SELECT mess_id, from_user, subject, read, sent FROM messages WHERE to_user = (SELECT username FROM users WHERE id = :id) AND to_del = 0",
+    #                      id=session["user_id"])
 
     return render_template("favorites.html", favorites=favorites)
 
@@ -186,7 +186,7 @@ def register():
         rows = db.execute("SELECT user_id FROM users WHERE username = :username",
                           username=request.form.get("username"))
 
-        session["user_id"] = rows[0]["id"]
+        session["user_id"] = rows[0]["user_id"]
 
         # Show success message
         flash('You were successfully registered and logged in!', category='info')
