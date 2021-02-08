@@ -183,7 +183,7 @@ def register():
             return render_template("error.html", code='400', message=['Username unavailable'])
 
         # Log in new user
-        rows = db.execute("SELECT id FROM users WHERE username = :username",
+        rows = db.execute("SELECT user_id FROM users WHERE username = :username",
                           username=request.form.get("username"))
 
         session["user_id"] = rows[0]["id"]
