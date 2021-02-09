@@ -4,7 +4,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import login_required
+from helpers import get_dict, login_required
 from cs50 import SQL
 
 # Configure application
@@ -27,7 +27,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-# Configure CS50 Library to use SQLite database
+# Configure CS50 class to use SQLite database
 db = SQL("sqlite:///recipe.db")
 
 @app.route('/')
@@ -35,9 +35,27 @@ db = SQL("sqlite:///recipe.db")
 def index():
     """Show user's favorites"""
 
-    # Query database for user's favorites
-    #favorites = db.execute("SELECT mess_id, from_user, subject, read, sent FROM messages WHERE to_user = (SELECT username FROM users WHERE id = :id) AND to_del = 0",
-    #                      id=session["user_id"])
+    # Query database and convert lists to dicts
+    type_rows = db.execute("SELECT * FROM types")
+    types = get_dict("type_id", type_rows)
+
+    cuisine_rows = db.execute("SELECT * FROM cuisines")
+    cuisines = get_dict("cuisine_id", cuisine_rows)
+
+    appliance_rows = db.execute("SELECT * FROM appliances")
+    appliances = get_dict("appliance_id", appliance_rows)
+
+    # https://stackoverflow.com/questions/10562915/selecting-rows-with-id-from-another-table
+    # Query database for all the recipes the user has favorited
+    favorites = db.execute("SELECT recipe_id, title, veggie, vegan, gluten, type_id, cuisine_id, prep_time, cook_time, appliance_id, servings FROM recipes WHERE recipe_id IN (SELECT recipe_id FROM favorites WHERE user_id = :user_id)",
+                           user_id=session["user_id"])
+
+    # Maps ids to names without need for complicated INNER JOIN
+    for favorite in favorites:
+        favorite['type_id'] = types[favorite['type_id']]['type_name']
+        favorite['subtype'] = types[favorite['type_id']]['subtype']
+        favorite['cuisine_id'] = cuisines[favorite['cuisine_id']]['cuisine_name']
+        favorite['appliance_id'] = appliances[favorite['appliance_id']]['appliance_name']
 
     return render_template("favorites.html", favorites=favorites)
 
@@ -47,10 +65,25 @@ def index():
 def browse():
     """Show all recipes"""
 
-    # https://stackoverflow.com/questions/10562915/selecting-rows-with-id-from-another-table
+    # Query database and convert lists to dicts
+    type_rows = db.execute("SELECT * FROM types")
+    types = get_dict("type_id", type_rows)
+
+    cuisine_rows = db.execute("SELECT * FROM cuisines")
+    cuisines = get_dict("cuisine_id", cuisine_rows)
+
+    appliance_rows = db.execute("SELECT * FROM appliances")
+    appliances = get_dict("appliance_id", appliance_rows)
+
     # Query database for all recipes
-    recipes = db.execute("SELECT camp_id, camp_name, setting, players, max, freq, day, time, zone FROM campaigns WHERE players < max AND dm != :id AND camp_id NOT IN (SELECT camp_id FROM characters WHERE id = :id AND camp_id IS NOT NULL)",
-                           id=session["user_id"])
+    recipes = db.execute("SELECT recipe_id, title, veggie, vegan, gluten, type_id, cuisine_id, prep_time, cook_time, appliance_id, servings FROM recipes")
+
+    # Maps ids to names without need for complicated INNER JOIN
+    for recipe in recipes:
+        recipe['type_id'] = types[recipe['type_id']]['type_name']
+        recipe['subtype'] = types[recipe['type_id']]['subtype']
+        recipe['cuisine_id'] = cuisines[recipe['cuisine_id']]['cuisine_name']
+        recipe['appliance_id'] = appliances[recipe['appliance_id']]['appliance_name']
 
     return render_template("browse.html", recipes=recipes)
 
