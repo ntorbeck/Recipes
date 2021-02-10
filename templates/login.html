@@ -8,7 +8,9 @@
 
     <img class="lfg_logo" src="/static/images/lfg_logo.png" alt="LFG Logo">
     <h2 class="logo my-4">Virtual Cookbook</h2>
-    <form action="/login" method="post">
+
+    <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+    <form action="/login" method="post" class="needs-validation" novalidate>
         <div class="form-group">
             <input autocomplete="off" autofocus class="form-control cs50" name="username" placeholder="Username" type="text" maxlength="50" aria-label="Username" autofocus required>
             <!-- https://getbootstrap.com/docs/4.1/components/forms/#validation -->
