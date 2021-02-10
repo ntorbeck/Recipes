@@ -1,63 +1,50 @@
 {% extends "layout.html" %}
 
-{% block title %}
-    Recipe Browser
-{% endblock %}
+{% if browse %}
+
+    {% block title %}
+        Recipe Browser
+    {% endblock %}
+
+{% elif favorites %}
+
+    {% block title %}
+        Favorites
+    {% endblock %}
+
+{% elif your_rep %}
+
+    {% block title %}
+        Your Recipes
+    {% endblock %}
+    
+{% endif %}
 
 {% block main %}
 
-    <div class="row cs50">
-        <!-- https://getbootstrap.com/docs/4.1/components/alerts/ -->
-        <div class="alert alert-info mb-2">
-            <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
-            <h1 class="alert-heading mb-1">Recipe Browser</h1>
-            <div class="row text-left spac_sm mx-2">
-                &bull; Welcome to the recipe browser, this shows all the recipes in our database.
+    {% if browse %}
+        <div class="row cs50">
+            <!-- https://getbootstrap.com/docs/4.1/components/alerts/ -->
+            <div class="alert alert-info mb-2">
+                <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+                <h1 class="alert-heading mb-1">Recipe Browser</h1>
+                <div class="row text-left spac_sm mx-2">
+                    &bull; Welcome to the recipe browser, this shows all the recipes in our database.
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="text-left spacing">
-        <!-- https://getbootstrap.com/docs/4.1/content/tables/#responsive-tables -->
-        <!-- https://datatables.net/examples/basic_init/multi_col_sort.html -->
-        <div class="table-responsive dataTables_wrapper no-footer" id="DataTables_Browse_Table_wrapper">
-            <!-- https://getbootstrap.com/docs/4.1/content/tables/ -->
-            <table class="table table-bordered table-hover dataTable no-footer borBot" id="DataTables_Browse_Table">
-                <thead class="thead-dark">
-                    <tr class="row_link">
-                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Browse_Table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Recipe Title: activate to sort column descending">Recipe Title</th>
-                        <th class="sorting" tabindex="0" aria-controls="DataTables_Browse_Table" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending">Type</th>
-                        <th class="sorting" tabindex="0" aria-controls="DataTables_Browse_Table" rowspan="1" colspan="1" aria-label="Cuisine: activate to sort column ascending">Cuisine</th>
-                        <th class="sorting" tabindex="0" aria-controls="DataTables_Browse_Table" rowspan="1" colspan="1" aria-label="Prep Time: activate to sort column ascending">Prep Time</th>
-                        <th class="sorting" tabindex="0" aria-controls="DataTables_Browse_Table" rowspan="1" colspan="1" aria-label="Cook Time: activate to sort column ascending">Cook Time</th>
-                        <th class="sorting" tabindex="0" aria-controls="DataTables_Browse_Table" rowspan="1" colspan="1" aria-label="Appliance: activate to sort column ascending">Appliance</th>
-                        <th class="sorting" tabindex="0" aria-controls="DataTables_Browse_Table" rowspan="1" colspan="1" aria-label="Servings: activate to sort column ascending">Servings</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {% for recipe in recipes %}
-                    <!-- https://stackoverflow.com/questions/17147821/how-to-make-a-whole-row-in-a-table-clickable-as-a-link -->
-                        <tr class="row_link" onclick="window.location='/recipe?recipe_id={{ recipe.recipe_id }}'" data-toggle="tooltip" data-placement="bottom" title="Click to view">
-                            <td>{{ recipe.title }}</td>
-                            <td>{{ recipe.type }}</td>
-                            <td>{{ recipe.cuisine }}</td>
-                            <td>{{ recipe.prep_time }}</td>
-                            <td>{{ recipe.cook_time }}</td>
-                            <td>{{ recipe.appliance }}</td>
-                            <td>{{ recipe.servings }}</td>
-                        </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
+    {% elif favorites %}
+        <div class="btn-group mb-3" role="group" aria-label="Table Navigation">
+            <button type="button" class="btn btn-outline-info px-3 py-2 active" aria-label="Favorites button" onclick="window.location='/'">Favorites</button>
+            <button type="button" class="btn btn-outline-info px-3 py-2" aria-label="Your Recipes button" onclick="window.location='/your_recipes'">Your Recipes</button>
         </div>
-    </div>
+    {% elif your_rep %}
+        <div class="btn-group mb-3" role="group" aria-label="Table Navigation">
+            <button type="button" class="btn btn-outline-info px-3 py-2" aria-label="Favorites button" onclick="window.location='/'">Favorites</button>
+            <button type="button" class="btn btn-outline-info px-3 py-2 active" aria-label="Your Recipes button" onclick="window.location='/your_recipes'">Your Recipes</button>
+        </div>
+    {% endif %}
 
-    <script>
-
-        $('table')['DataTable']({'info':!![],'ordering':!![],'paging':!![],'searching':!![]});
-
-    </script>
+    {% block table %}{% endblock table %}
 
 {% endblock %}
