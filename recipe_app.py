@@ -232,7 +232,7 @@ def register():
 
 @app.route('/your_recipes')
 @login_required
-def index():
+def your_recipes():
     """Show user's submitted recipes"""
 
     type_rows = db.execute("SELECT * FROM types")
