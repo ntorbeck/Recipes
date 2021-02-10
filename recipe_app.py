@@ -195,7 +195,11 @@ def register():
 
         # Ensure retyped password matches original password
         elif not request.form.get("password") == request.form.get("confirmation"):
-            errors.append('Passwords do not match')
+            errors.append('Passwords do not match.')
+
+        # Ensure user gave the correct secret code
+        elif not request.form.get("secret_code") == "tacos":
+            errors.append('Secret Code is invalid.')
 
         # If errors exist, render error template
         if not errors == []:
