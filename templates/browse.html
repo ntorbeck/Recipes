@@ -1,24 +1,14 @@
 {% extends "layout.html" %}
 
-{% if browse %}
-
     {% block title %}
-        Recipe Browser
-    {% endblock %}
-
-{% elif favorites %}
-
-    {% block title %}
-        Favorites
-    {% endblock %}
-
-{% elif your_rep %}
-
-    {% block title %}
-        Your Recipes
-    {% endblock %}
-    
-{% endif %}
+        {% if browse %}
+            Recipe Browser
+        {% elif favorites %}
+            Favorites
+        {% elif your_rep %}
+            Your Recipes
+        {% endif %}
+    {% endblock title %}
 
 {% block main %}
 
@@ -47,4 +37,4 @@
 
     {% block table %}{% endblock table %}
 
-{% endblock %}
+{% endblock main %}
