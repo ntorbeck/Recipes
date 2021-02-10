@@ -140,7 +140,7 @@ def login():
             return render_template("error.html", code=code, message=errors)
 
         # Query database for username
-        rows = db.execute("SELECT id, username, hash FROM users WHERE username = :username",
+        rows = db.execute("SELECT user_id, username, hash FROM users WHERE username = :username",
                           username=request.form.get("username"))
 
         # Ensure username exists and password is correct
@@ -148,7 +148,7 @@ def login():
             return render_template("error.html", code='403', message=['Invalid username and/or password.'])
 
         # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        session["user_id"] = rows[0]["user_id"]
 
         # Redirect user to home page
         return redirect("/")
