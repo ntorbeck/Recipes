@@ -1,0 +1,184 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Recipe Creator
+{% endblock %}
+
+{% block main %}
+
+
+    <div class="row cs50">
+        <!-- https://getbootstrap.com/docs/4.1/components/alerts/ -->
+        <div class="alert alert-info mb-2">
+            <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+            <h1 class="alert-heading mb-1">Recipe Creator</h1>
+        </div>
+    </div>
+
+    <div class="text-left">
+        <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+        <form action="/recipe_gen" method="post" class="needs-validation" novalidate>
+            <!-- http://getbootstrap.com/docs/4.1/layout/grid/ -->
+            <div class="row justify-content-lg-center">
+                <!-- http://getbootstrap.com/docs/4.1/components/forms/#form-controls -->
+                <div class="form-group col-lg-4 mb-4">
+                    <label for="title">Title:</label>
+                    <input class="form-control" id="title" name="title" type="text" placeholder="Chicken Cacciatore" maxlength="50" autocomplete="off" autofocus required>
+                    <!-- https://getbootstrap.com/docs/4.1/components/forms/#validation -->
+                    <div class="invalid-feedback relative">
+                        Please provide a title.
+                    </div>
+                </div>
+                <div class="form-group col-lg-4 mb-4">
+                    <label for="description">Description:</label>
+                    <input class="form-control" id="description" name="description" type="text" placeholder="Mildly spicy pasta" maxlength="100" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="form-group col-auto mb-4">
+                    <label for="veggie">Vegetarian:</label>
+                    <!-- https://getbootstrap.com/docs/4.1/components/input-group/#custom-select -->
+                    <select class="custom-select" id="veggie" name="veggie">
+                        <option value="0" selected>No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-auto mb-4">
+                    <label for="vegan">Vegan:</label>
+                    <select class="custom-select" id="vegan" name="vegan">
+                        <option value="0" selected>No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-auto mb-4">
+                    <label for="gluten">Gluten-Free:</label>
+                    <select class="custom-select" id="gluten" name="gluten">
+                        <option value="0" selected>No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="form-group col-lg-4 mb-4">
+                    <label for="source">Source:</label>
+                    <input class="form-control" id="source" name="source" type="text" placeholder="Awesome Cookbook" maxlength="100" autocomplete="off">
+                </div>
+
+                <div class="form-group col-lg-4 mb-4">
+                    <label for="cuisine">Cuisine:</label>
+                    <input class="form-control" id="cuisine" name="cuisine" type="text" placeholder="Italian" maxlength="30">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="form-group col-lg-4 mb-4">
+                    <label for="type">Type:</label>
+                    <select class="custom-select" id="type" name="type" required>
+                        <option value="">Choose...</option>
+                        <option value="Appetizer">Appetizer</option>
+                        <option value="Soup">Soup</option>
+                        <option value="Salad">Salad</option>
+                        <option value="Entrée">Entrée</option>
+                        <option value="Side Dish">Side Dish</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Beverage">Beverage</option>
+                        <option value="Bread">Bread</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="invalid-feedback relative">
+                        Please choose a type.
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-4 mb-4">
+                    <label for="subtype">Subtype:</label>
+                    <select class="custom-select" id="subtype" name="subtype" required>
+                        <option value="">Choose...</option>
+                    </select>
+                    <div class="invalid-feedback relative">
+                        Please choose a subtype.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="form-group col-auto mb-4">
+                    <label for="prep_time" class="spacing">Prep Time:</label>
+                    <input class="form-control" id="prep_time" name="prep_time" type="text" value="00 00:00" maxlength="8" autocomplete="off" pattern="(^\d\d [0-2]\d:[0-5]\d)">
+                    <div class="invalid-feedback relative">
+                        Format: DD hh:mm
+                    </div>
+                </div>
+
+                <div class="form-group col-auto mb-4">
+                    <label for="cook_time" class="spacing">Cook Time:</label>
+                    <input class="form-control" id="cook_time" name="cook_time" type="text" maxlength="8" autocomplete="off" pattern="(^\d\d [0-2]\d:[0-5]\d)">
+                    <div class="invalid-feedback relative">
+                        Format: DD hh:mm
+                    </div>
+                </div>
+
+                <div class="form-group col-auto mb-4">
+                    <label for="servings">Servings:</label>
+                    <input class="form-control" id="servings" name="servings" type="number" value="1" min="1" step="1">
+                    <div class="invalid-feedback relative">
+                        Range: 1+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-lg-center">
+                <div class="form-group col-lg-8">
+                    <label for="steps">Steps:</label>
+                    <textarea class="form-control" id="steps" name="steps" maxlength="5000" rows="5" autocomplete="off" data-toggle="tooltip" data-placement="bottom" title="Click & drag bottom right corner to expand"></textarea>
+                </div>
+            </div>
+
+            <div class="row justify-content-lg-center">
+                <div class="form-group col-lg-8">
+                    <label for="notes">Notes:</label>
+                    <textarea class="form-control" id="notes" name="notes" maxlength="1000" rows="5" autocomplete="off" data-toggle="tooltip" data-placement="bottom" title="Click & drag bottom right corner to expand"></textarea>
+                </div>
+            </div>
+
+            <div class="row justify-content-lg-center">
+                <div class="form-group custom-file col-lg-8">
+                    <label for="image" class="custom-file-label">Choose an image...</label>
+                    <input class="custom-file-input" id="image" name="image" type="file">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+                <button class="btn btn-info" type="submit" aria-label="Submit button">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        /* https://getbootstrap.com/docs/4.1/components/forms/#custom-styles */
+        /* Validates all individual text fields and select menus */
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                    form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+{% endblock %}

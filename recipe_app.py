@@ -234,6 +234,13 @@ def register():
         return render_template("register.html")
 
 
+@app.route("/recipe_gen", methods=["GET"])
+@login_required
+def get_char_gen():
+    """Renders recipe creator"""
+    return render_template("recipe_gen.html")
+
+
 @app.route('/your_recipes')
 @login_required
 def your_recipes():
