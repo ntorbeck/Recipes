@@ -16,6 +16,7 @@
     </div>
 
     <div class="text-left">
+        <h4><span class="badge rounded-pill bg-info">1</span>Information</h4>
         <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
         <form action="/recipe_gen" method="post" class="needs-validation" novalidate>
             <!-- http://getbootstrap.com/docs/4.1/layout/grid/ -->
@@ -116,7 +117,7 @@
 
                 <div class="form-group col-auto mb-4">
                     <label for="cook_time" class="spacing">Cook Time:</label>
-                    <input class="form-control" id="cook_time" name="cook_time" type="text" maxlength="8" autocomplete="off" pattern="(^\d\d [0-2]\d:[0-5]\d)">
+                    <input class="form-control" id="cook_time" name="cook_time" type="text" value="00 00:00" maxlength="8" autocomplete="off" pattern="(^\d\d [0-2]\d:[0-5]\d)">
                     <div class="invalid-feedback relative">
                         Format: DD hh:mm
                     </div>
