@@ -42,15 +42,17 @@
             </div>
 
             <div class="row justify-content-center">
-                <div class="btn-group" role="group">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label for="veggie">Vegetarian:</label>
-                    <input type="radio" class="btn-check" name="btnradio" id="vegyes" autocomplete="off" checked="">
-                    <label class="btn btn-outline-primary" for="vegyes">Yes</label>
-                    <input type="radio" class="btn-check" name="btnradio" id="vegno" autocomplete="off" checked="">
-                    <label class="btn btn-outline-primary" for="vegno">No</label>
+                    <label class="btn btn-outline-info" for="vegyes">
+                        <input type="radio" name="yesno" id="vegyes" autocomplete="off"> Yes
+                    </label>
+                    <label class="btn btn-outline-info active" for="vegno">
+                        <input type="radio" name="yesno" id="vegno" autocomplete="off" checked> No
+                    </label>
                 </div>
 
-                <div class="btn-group" role="group">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label for="vegan">Vegan:</label>
                     <input type="radio" class="btn-check" name="btnradio" id="veganyes" autocomplete="off" checked="">
                     <label class="btn btn-outline-primary" for="veganyes">Yes</label>
@@ -59,7 +61,7 @@
                     </select>
                 </div>
 
-                <div class="btn-group" role="group">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label for="gluten">Gluten-Free:</label>
                     <input type="radio" class="btn-check" name="btnradio" id="glutenyes" autocomplete="off" checked="">
                     <label class="btn btn-outline-primary" for="glutenyes">Yes</label>
