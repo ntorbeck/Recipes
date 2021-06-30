@@ -42,13 +42,12 @@
             </div>
 
             <div class="row justify-content-center">
-                <div class="form-group col-auto mb-4">
+                <div class="btn-group col-auto mb-4" role="group">
                     <label for="veggie">Vegetarian:</label>
-                    <!-- https://getbootstrap.com/docs/4.1/components/input-group/#custom-select -->
-                    <select class="custom-select" id="veggie" name="veggie">
-                        <option value="0" selected>No</option>
-                        <option value="1">Yes</option>
-                    </select>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
+                    <label class="btn btn-outline-primary" for="btnradio1">Yes</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked="">
+                    <label class="btn btn-outline-primary" for="btnradio2">No</label>
                 </div>
 
                 <div class="form-group col-auto mb-4">
